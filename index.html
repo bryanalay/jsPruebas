@@ -1,0 +1,33 @@
+<!DOCTYPE html> 
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Mi primer proyecto</title>
+        <script>
+            async function traerPais(){
+                const respuesta = await fetch("https://api.nationalize.io/?name=patricio");
+                if (!respuesta.ok) {
+                    let opps = "error 404 no encontre nada wey!!";
+                    alert(opps);
+                    throw new Error(opps);
+                }
+                const nombre = respuesta.json();
+                return nombre;
+            }
+
+            function mostrarNombre(n){
+                document.getElementById("mensaje").innerHTML = n.country[0].country_id;
+            }
+
+            traerPais().then(mostrarNombre);
+        </script>
+    </head>
+    <body>
+        <h1>Titulo de mi proyecto</h1>
+        <p>este es un proyecto muy serio</p>
+        <p id="mensaje">Cargando....</p>
+        <script type="text/javascript">
+            //mostrarNombre("pancracio");
+        </script>
+    </body>
+</html>
